@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="preconnect" href="https://app.snipcart.com" />
+    <link rel="preconnect" href="https://cdn.snipcart.com" />
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.css" />
+    <title>React Ecommerce App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script
+        src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"
+        async
+    ></script>
+  </body>
+</html>
+export default function Product(props) {
+    const {id, imageUrl, name, description, price} = props
+    return (
+        <div
+            key={id}
+            className={"product"}
+        >
+            <img
+                src={imageUrl}
+                alt={`Image of ${name}`}
+                className={"image-product"}
+            />
+            <h3>{name}</h3>
+            <p>{description}</p>
+            <span>${price}</span>
+            <div>
+                <button
+                    className="snipcart-add-item"
+                    data-item-id={id}
+                    data-item-image={imageUrl}
+                    data-item-name={name}
+                    data-item-url="/"
+                    data-item-price={price}
+                >
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    );
+}
+import "./index.css"
+import "./App.css"
+import products from "./assets/products.json"
+import Product from "./components/Product";
+export default function App() {
+  return (
+      <div className={"container"}>
+        <main className={"main"}>
+          <h1>
+            E-Commerce in React and SnipCart
+          </h1>
+          <div className={"grid"}>
+            {
+              products.map((product, i) => <Product {...product} key={i}/>)
+            }
+          </div>
+        </main>
+        <div
+            id="snipcart"
+            data-api-key="NWMwZWNkZGMtZjU2ZS00YzM3LWFlZjYtMmM5Zjk0MWViZDcxNjM3Njg0OTY0ODg5NTk4MTM3" hidden
+        >
+        </div>
+      </div>
+  );
+}
+<div 
+  id="Snipcart" 
+  data-api-key="NWMwZWNkZGMtZjU2ZS00YzM3LWFlZjYtMmM5Zjk0MWViZDcxNjM3Njg0OTY0ODg5NTk4MTM3" 
+  hidden 
+></div>
+[
+  {
+    "id": "t-shirt",
+    "name": "T-Shirt",
+    "price": 35.0,
+    "imageUrl": "https://www.datocms-assets.com/56262/1633338865-shirt.jpg",
+    "description": "A white t-shirt",
+    "url": "/api/products/halfmoon"
+  },
+  {
+    "id": "wallet",
+    "name": "Wallet",
+    "price": 20.0,
+    "imageUrl": "https://www.datocms-assets.com/56262/1633338869-fancy-wallet.jpg",
+    "description": "A fancy wallet",
+    "url": "/api/products/wallet"
+  },
+  {
+    "id": "cup",
+    "name": "Cup",
+    "price": 5.0,
+    "imageUrl": "https://www.datocms-assets.com/56262/1633338802-cup.jpg",
+    "description": "A tea cup",
+    "url": "/api/products/veiltail"
+  }
+]
